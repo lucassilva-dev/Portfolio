@@ -648,12 +648,6 @@ h3 {
 }
 
 /*========== Portfolio ==========*/
-.imgContainer {
-  height: 35vh;
-  width: 20rem;
-  background-size: cover;
-}
-
 .portfolio .portfolio-filter {
   flex: 0 0 100%;
   max-width: 100%;
