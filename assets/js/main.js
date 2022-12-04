@@ -47,6 +47,33 @@ var swiper = new Swiper(".testimonial-wrapper", {
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 
 /*=============== PORTFOLIO ITEM FILTER ===============*/
+const filterContainer = document.querySelector(".portfolio-filter-inner"),
+  filterBtns = filterContainer.children,
+  totalFilterBtn = filterBtns.length,
+  portfolioItems = document.querySelectorAll(".portfolio-item"),
+  totalPortfolioItem = portfolioItems.length;
+
+for (let i = 0; i < totalFilterBtn; i++) {
+  filterBtns[i].addEventListener("click", function () {
+    filterContainer.querySelector(".active").classList.remove("active");
+    this.classList.add("active");
+
+    const filterValue = this.getAttribute("data-filter");
+    for (let k = 0; k < totalPortfolioItem; k++) {
+      if (filterValue === portfolioItems[k].getAttribute("data-category")) {
+        portfolioItems[k].classList.remove("hide");
+        portfolioItems[k].classList.add("show");
+      } else {
+        portfolioItems[k].classList.add("hide");
+        portfolioItems[k].classList.remove("show");
+      }
+      if(filterValue === "all") {
+        portfolioItems[k].classList.remove("hide");
+        portfolioItems[k].classList.add("show");
+      }
+    }
+  });
+}
 
 /*=============== THEME/DISPLAY CUSTOMIZATION ===============*/
 const theme = document.querySelector("#theme-button");
@@ -103,10 +130,10 @@ fontSizes.forEach((size) => {
 
 // remove active class from colors
 const changeActiveColorClass = () => {
-    colorPalette.forEach(colorPicker => {
-        colorPicker.classList.remove("active");
-    })
-}
+  colorPalette.forEach((colorPicker) => {
+    colorPicker.classList.remove("active");
+  });
+};
 colorPalette.forEach((color) => {
   color.addEventListener("click", () => {
     let primaryHue;
@@ -123,7 +150,7 @@ colorPalette.forEach((color) => {
       primaryHue = 202;
     }
     color.classList.add("active");
-    root.style.setProperty('--primary-color-hue', primaryHue);
+    root.style.setProperty("--primary-color-hue", primaryHue);
   });
 });
 /*===== THEME BACKGROUNDS =====*/
@@ -133,41 +160,41 @@ let darkColorLightness;
 
 // change background color
 const changeBG = () => {
-    root.style.setProperty('--light-color-lightness', lightColorLightness);
-    root.style.setProperty('--white-color-lightness', whiteColorLightness);
-    root.style.setProperty('--dark-color-lightness', darkColorLightness);
-}
+  root.style.setProperty("--light-color-lightness", lightColorLightness);
+  root.style.setProperty("--white-color-lightness", whiteColorLightness);
+  root.style.setProperty("--dark-color-lightness", darkColorLightness);
+};
 
-Bg1.addEventListener('click', () => {
-    //add active class
-    Bg1.classList.add('active');
-    // remove active class from the others
-    Bg2.classList.remove('active');
-    Bg3.classList.remove('active');
-    //remove customized changes from local storage
-    window.location.reload();
-})
-Bg2.addEventListener('click', () => {
-    darkColorLightness = '95%';
-    whiteColorLightness = '20%';
-    lightColorLightness = '15%';
+Bg1.addEventListener("click", () => {
+  //add active class
+  Bg1.classList.add("active");
+  // remove active class from the others
+  Bg2.classList.remove("active");
+  Bg3.classList.remove("active");
+  //remove customized changes from local storage
+  window.location.reload();
+});
+Bg2.addEventListener("click", () => {
+  darkColorLightness = "95%";
+  whiteColorLightness = "20%";
+  lightColorLightness = "15%";
 
-    // add active class
-    Bg2.classList.add('active');
-    // remove active class from the others
-    Bg1.classList.remove('active');
-    Bg3.classList.remove('active');
-    changeBG();
-})
-Bg3.addEventListener('click', () => {
-    darkColorLightness = '95%';
-    whiteColorLightness = '10%';
-    lightColorLightness = '0%';
+  // add active class
+  Bg2.classList.add("active");
+  // remove active class from the others
+  Bg1.classList.remove("active");
+  Bg3.classList.remove("active");
+  changeBG();
+});
+Bg3.addEventListener("click", () => {
+  darkColorLightness = "95%";
+  whiteColorLightness = "10%";
+  lightColorLightness = "0%";
 
-    // add active class
-    Bg3.classList.add('active');
-    // remove active class from the others
-    Bg2.classList.remove('active');
-    Bg1.classList.remove('active');
-    changeBG();
-})
+  // add active class
+  Bg3.classList.add("active");
+  // remove active class from the others
+  Bg2.classList.remove("active");
+  Bg1.classList.remove("active");
+  changeBG();
+});
